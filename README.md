@@ -1,5 +1,4 @@
 # Feed Reader Testing Project
-<br />
 Feed Reader Testing is web-based application that reads RSS feeds.<br />
 I used **Jasmine** to write a number of tests against a pre-existing application.
 
