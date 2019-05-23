@@ -27,29 +27,23 @@ $(function () {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+
         it('allFeeds hav URL defined and that the URL is not empty', function () {
             for (let i in allFeeds) {
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url).not.toBe(null);
                 expect(allFeeds[i].url).toContain("http://");
-                console.log(allFeeds[i]);
+                //  console.log(allFeeds[i]);
             }
 
         });
 
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
         it('allFeeds have  name defined and that the name is not empty', function () {
             for (let i in allFeeds) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toBe(null);
+                expect(allFeeds[i].name.length).toBeGreaterThan(0);
+
+
             }
         });
 
@@ -97,22 +91,23 @@ $(function () {
 
 
         /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
+        
          */
 
+
         beforeEach(function (done) {
-            loadFeed(0, done);
+            loadFeed(0, function () {
+                done();
+            });
+
         });
 
 
-        let feed = document.querySelector('.feed');
-        let entry = feed.querySelectorAll('.entry');
-        it('it has at least a single .entry element within the .feed container', function () {
-            expect(entry.length).not.toBe(null);
 
+        it('it has at least a single .entry element within the .feed container', function () {
+            let feed = document.querySelector('.feed');
+            let entry = feed.querySelectorAll('.entry');
+            expect(entry.length).toBeGreaterThan(0);
         });
 
     }); // Initial Entries End
